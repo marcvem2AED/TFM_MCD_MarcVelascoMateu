@@ -1,0 +1,25 @@
+# Table of contents
+
+format: jb-book
+root: intro
+options:
+  numbered: 3
+chapters:
+- file: 00_abstract
+- file: 01_applicable_ref_docs
+- file: 02_acronyms_and_definitions
+- file: 03_introduction_purpose_scope
+- file: 04_background_justification_algorithm
+- file: 05_baseline_algorithm_definition
+- file: 05_static_offline_preparation
+#- file: 05_dynamic_offline_chain
+- file: 06_input_output_data_definition
+#- file: 06_input_output_data_definition_dynamic_offline
+- file: annex
+  sections:
+   - file: change_log 
+#    - file: notebooks/calculate_endmember_table.ipynb
+#      title: Pre-computation of look up table (Offline)
+#    - file: notebooks/DD-JNB_SurfaceWaterFraction.ipynb
+#      title: Surface Water Fraction algorithm demonstration
+- file: references

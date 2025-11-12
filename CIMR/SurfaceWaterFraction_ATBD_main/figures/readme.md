@@ -1,0 +1,1 @@
+This folder will contain all generated figures but will not be uploaded to Github

@@ -13,5 +13,4 @@ Repositorio del trabajo de fin de máster de Marc Velasco Mateu en el Máster en
 
 ## TO DO
 
-- Descargar Panoply: https://www.giss.nasa.gov/tools/panoply/download/
 - Correr el código de Carla con estos datos

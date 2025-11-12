@@ -1,0 +1,15 @@
+<config>
+    <local>True</local>
+    <local_paths>
+        <windsat_folder>../data/validation_data/windsat/</windsat_folder>
+        <lpdr_folder>../data/validation_data/LPDR/</lpdr_folder>
+        <igbp_file>../data/validation_data/igbp_landcover2windsat.h5</igbp_file>
+        <glwd_folder>../data/validation_data/GLWD_classification/</glwd_folder>
+    </local_paths>
+    <remote_paths>
+        <windsat_folder>/data/databases/Windsat/Daily_TBToA/</windsat_folder>
+        <lpdr_folder>/data/databases/LPDR_v3_2017_025deg/</lpdr_folder>
+        <igbp_file>/data/databases/Windsat/igbp_landcover2windsat.h5</igbp_file>
+        <glwd_folder>/data/databases/GLWD_025deg/</glwd_folder>
+    </remote_paths>
+</config>

@@ -1,0 +1,25 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Level-2 ATBD and prototype in CIMR
+  L2PAD for SWF algorithm.
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Andrés 
+    family-names: Terrer Gómez
+    email: andres.terrer@gmail.com
+    affiliation: University of Valencia
+    orcid: 'https://orcid.org/0000-0002-9498-4551'
+  - given-names: Roberto
+    family-names: Fernandez-Moran
+    affiliation: University of Valencia
+repository-code: 'https://github.com/CIMR-L2PAD/SurfaceWaterFraction_ATBD'
+url: 'https://github.com/CIMR-L2PAD'
+abstract: >-
+  Algorithm Theoretical Basis Document and prototype for
+  Surface Water Fraction algorithm in the CIMR L2PAD project.

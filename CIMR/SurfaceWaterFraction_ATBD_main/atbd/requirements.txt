@@ -1,0 +1,13 @@
+jupyter-book
+matplotlib
+numpy
+sphinxcontrib-mermaid
+xarray
+cartopy
+netcdf4
+h5netcdf
+rioxarray
+dask
+joblib
+scipy
+scikit-learn

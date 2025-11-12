@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Baseline Algorithm Definition &#8212; CIMR Surface Water Fraction ATBD</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles.css?v=df429b37" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05_baseline_algorithm_definition';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Static Offline Preparation" href="05_static_offline_preparation.html" />
+    <link rel="prev" title="5. Background and justification of selected algorithm" href="04_background_justification_algorithm.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">This is V2 of the ATBD, prepared for DDR (November 2025)</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="CIMR Surface Water Fraction ATBD - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="CIMR Surface Water Fraction ATBD - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    L2 CIMR SWF product
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_abstract.html">1. Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_applicable_ref_docs.html">2. Applicable and reference documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_acronyms_and_definitions.html">3. Acronyms and definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_introduction_purpose_scope.html">4. Introduction, purpose and scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_background_justification_algorithm.html">5. Background and justification of selected algorithm</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Baseline Algorithm Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_static_offline_preparation.html">7. Static Offline Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_input_output_data_definition.html">8. Algorithm Input and Output Data Definition (IODD)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annex.html">9. Annex</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="change_log.html">9.1. Change Log</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">10. Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/CIMR-L2PAD/SurfaceWaterFraction_ATBD" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/05_baseline_algorithm_definition.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Baseline Algorithm Definition</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-method">6.1. Retrieval Method</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-emissivity-estimation-for-land-and-water-endmembers">6.1.1. Reference Emissivity Estimation for Land and Water Endmembers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cimr-level-1b-pre-processing-and-re-sampling-approach">6.2. CIMR Level-1b pre-processing and re-sampling approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-assumptions-and-simplifications">6.3. Algorithm Assumptions and Simplifications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#level-2-end-to-end-algorithm-functional-flow-diagram">6.4. Level-2 end to end algorithm functional flow diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atmospheric-correction">6.5. Atmospheric correction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data">6.5.1. Input data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-data">6.5.2. Output data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resampling">6.6. Resampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.6.1. Input data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.6.2. Output data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#swf-retrieval-approach">6.7. SWF retrieval approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-description">6.7.1. Mathematical description</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">6.7.2. Input data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">6.7.3. Output data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auxiliary-data">6.7.4. Auxiliary data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-quantification">6.7.5. Uncertainty quantification</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivatives-of-swf-step-by-step-derivation">Partial Derivatives of SWF: Step-by-Step Derivation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-variables">6.7.6. Output Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype-implementation">6.7.7. Prototype implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#research-and-development">6.7.8. Research and development</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="baseline-algorithm-definition">
+<span id="baseline"></span><h1><span class="section-number">6. </span>Baseline Algorithm Definition<a class="headerlink" href="#baseline-algorithm-definition" title="Link to this heading">#</a></h1>
+<p>This section describes the baseline SWF retrieval algorithm. The algorithm is based on the methodology proposed by <span id="id1">[<a class="reference internal" href="references.html#id7" title="J. Du, J.S. Kimball, L.A. Jones, and J.D. Watts. Implementation of satellite based fractional water cover indices in the pan-arctic region using amsr-e and modis. Remote Sensing of Environment, 184:469–481, 2016. doi:10.1016/j.rse.2016.07.029.">Du <em>et al.</em>, 2016</a>, <a class="reference internal" href="references.html#id8" title="J. Du, J.S. Kimball, L.A. Jones, Y. Kim, J. Glassy, and J.D. Watts. A global satellite environmental data record derived from amsr-e and amsr2 microwave earth observations. Earth System Science Data, 9(2):791, 2017. doi:10.5194/essd-9-791-2017.">Du <em>et al.</em>, 2017</a>, <a class="reference internal" href="references.html#id9" title="J. Du, J.S. Kimball, J. Galantowicz, S.B. Kim, S.K. Chan, R. Reichle, L.A. Jones, and J.D. Watts. Assessing global surface water inundation dynamics using combined satellite information from smap, amsr2 and landsat. Remote Sensing of Environment, 213:1–17, 2018. doi:10.1016/j.rse.2018.04.054.">Du <em>et al.</em>, 2018</a>]</span>, adapted to the available microwave channels and specific overpass time of CIMR.</p>
+<section id="retrieval-method">
+<h2><span class="section-number">6.1. </span>Retrieval Method<a class="headerlink" href="#retrieval-method" title="Link to this heading">#</a></h2>
+<p>The Tau-Omega model equation <a class="reference internal" href="#equation-emissivity-1">(6.1)</a> describes the surface emissivity of terrestrial surfaces <span class="math notranslate nohighlight">\(e_p\)</span> as observed by satellites under conditions where the land is not frozen and free of snow <span id="id2">[<a class="reference internal" href="references.html#id11" title="L.A. Jones, C.R. Ferguson, J.S. Kimball, K. Zhang, S.T.K. Chan, K.C. McDonald, E.G. Njoku, and E.F. Wood. Satellite microwave remote sensing of daily land surface air temperature minima and maxima from amsr-e. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 3:111–123, 2010. doi:10.1109/JSTARS.2010.2041530.">Jones <em>et al.</em>, 2010</a>]</span>.</p>
+<div class="math notranslate nohighlight" id="equation-emissivity-1">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-emissivity-1" title="Link to this equation">#</a></span>\[\epsilon_p = f_w \cdot \epsilon_{pw} + (1-f_w) \cdot \epsilon_{pl}\]</div>
+<div class="math notranslate nohighlight" id="equation-emissivity-2">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-emissivity-2" title="Link to this equation">#</a></span>\[\begin{split}\begin{aligned}
+\epsilon_{pl} &amp;= (1-\omega)(1-\gamma)\left[1 + R_p \gamma \right] + (1-R_p)\gamma \\
+\gamma &amp;= \exp[-\tau \sec(\theta)]
+\end{aligned}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-emissivity-3">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-emissivity-3" title="Link to this equation">#</a></span>\[\epsilon_{pw} = f(\epsilon_w, S_r)\]</div>
+<p>where the subscript <span class="math notranslate nohighlight">\(p \in H,V\)</span> indicates polarization, and <span class="math notranslate nohighlight">\( \epsilon_{w}\)</span> and <span class="math notranslate nohighlight">\( \epsilon_{l}\)</span> represent the emissivities of water and land, respectively. The surface water term <span class="math notranslate nohighlight">\(f_w\)</span> refers to the fractional water within the sensor field of view (i.e., Surface Water Fraction, SWF). The symbol <span class="math notranslate nohighlight">\( \gamma\)</span> denotes the microwave transmissivity through the vegetation layer and <span class="math notranslate nohighlight">\(\theta\)</span> is the incidence angle, <span class="math notranslate nohighlight">\(\tau\)</span> refers to the vegetation optical depth (VOD) and <span class="math notranslate nohighlight">\(\omega\)</span> to the vegetation scattering albedo. <span class="math notranslate nohighlight">\( R_{p}\)</span> represents the soil reflectivity of a rough surface. <span class="math notranslate nohighlight">\( \epsilon_{w}\)</span> is the permittivity of water, and <span class="math notranslate nohighlight">\( S_{r}\)</span> is the surface water roughness. It must be noted that dependencies on the incidence angle <span class="math notranslate nohighlight">\(\theta\)</span> are omitted for clarity in all emissivity and reflectivity terms. For the same reason, dependencies of vegetation parameters on polarization have been omitted.</p>
+<p>Although the Tau-Omega model provides a theoretical framework to describe the relationship between surface emissivity and water fraction, applying it directly for SWF retrieval requires knowledge of multiple surface parameters, including VOD, vegetation scattering albedo, soil roughness and dielectric properties.</p>
+<p>Due to the complexity and limited availability of these input parameters at global scale and high resolution, a simplified retrieval method is proposed. This method is based on the use of a Difference Ratio (DR), which approximates SWF from observed surface emissivity and pre-computed reference emissivities for water and land, as showed in the mathematical description presented below.</p>
+<section id="reference-emissivity-estimation-for-land-and-water-endmembers">
+<h3><span class="section-number">6.1.1. </span>Reference Emissivity Estimation for Land and Water Endmembers<a class="headerlink" href="#reference-emissivity-estimation-for-land-and-water-endmembers" title="Link to this heading">#</a></h3>
+<p>A Look-Up Table (LUT) containing reference K-band microwave emissivities was developed to characterize pure endmember conditions for land and water (see <a class="reference internal" href="05_static_offline_preparation.html"><span class="std std-doc">static offline preparation</span></a>).</p>
+</section>
+</section>
+<section id="cimr-level-1b-pre-processing-and-re-sampling-approach">
+<h2><span class="section-number">6.2. </span>CIMR Level-1b pre-processing and re-sampling approach<a class="headerlink" href="#cimr-level-1b-pre-processing-and-re-sampling-approach" title="Link to this heading">#</a></h2>
+<p>The CIMR SWF processor ingests L2PP Land files produced by the CIMR L1B/L2Bridge <a class="reference internal" href="01_applicable_ref_docs.html"><span class="doc">[RD-2]</span></a>. L2PP Land files contain K-band brightness temperature (TB) observations (V and H polarizations) in swath geometry. In the L2 SWF Processor, annotations on L2PP Land files are applied to correct for water spillover efects in coastal areas (not near inland water bodies), and to compensate OZA variations across feeds and along the scan. The L2PP top-of-atmosphere (TOA) brightness temperatures are then corrected for atmospheric effects to obtain bottom-of-atmosphere (BOA) brightness temperatures, using the pre-computed atmospheric parameters provided by the L1B/L2Bridge. The corrected BOA brightness temperatures are then mapped onto a 3 km global EASE grid with the RGB resampling toolbox <a class="reference internal" href="01_applicable_ref_docs.html"><span class="doc">[RD-3]</span></a>.</p>
+</section>
+<section id="algorithm-assumptions-and-simplifications">
+<h2><span class="section-number">6.3. </span>Algorithm Assumptions and Simplifications<a class="headerlink" href="#algorithm-assumptions-and-simplifications" title="Link to this heading">#</a></h2>
+<p>By calculating land reference emissivities from a reference dataset (LPDR), the algorithm assumes unbiased SWF, SM and VOD estimations to construct the look-up table. Additionally, for the reference emissivities, the changes over soil and water surface roughness are not accounted. Soil and vegetation temperatures are accounted through the skin temperature (<span class="math notranslate nohighlight">\(T_{skin}\)</span> ).</p>
+</section>
+<section id="level-2-end-to-end-algorithm-functional-flow-diagram">
+<h2><span class="section-number">6.4. </span>Level-2 end to end algorithm functional flow diagram<a class="headerlink" href="#level-2-end-to-end-algorithm-functional-flow-diagram" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="#swf-diagram"><span class="std std-numref">Fig. 6.1</span></a> shows the algorithm flow for the L2 SWF retrieval algorithm. For clarity, this algorithm is expected to run separately on ascending and descending overpasses.</p>
+<figure class="align-default" id="swf-diagram">
+<img alt="_images/swf_diagram.jpg" src="_images/swf_diagram.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">CIMR L2 Surface Water Fraction estimation flow diagram</span><a class="headerlink" href="#swf-diagram" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="atmospheric-correction">
+<h2><span class="section-number">6.5. </span>Atmospheric correction<a class="headerlink" href="#atmospheric-correction" title="Link to this heading">#</a></h2>
+<p>As a first step, the L2PP brightness temperatures are converted from top-of-atmosphere (TOA) to bottom-of-atmosphere (BOA) values, using atmospheric parameters provided by the L1B/L2 Bridge. Neglecting sky contributions, the TOA brightness temperature can be expressed as <span id="id3">[<a class="reference internal" href="references.html#id6" title="Gabriëlle JM De Lannoy, Rolf H Reichle, Jinzheng Peng, Yann Kerr, Rita Castro, Edward J Kim, and Qing Liu. Converting between SMOS and SMAP level-1 brightness temperature observations over nonfrozen land. IEEE Geoscience and remote sensing letters, 12(9):1908–1912, 2015.">De Lannoy <em>et al.</em>, 2015</a>, <a class="reference internal" href="references.html#id16" title="Catherine Prigent, Filipe Aires, and William B Rossow. Land surface microwave emissivities over the globe for a decade. Bulletin of the American Meteorological Society, 87(11):1573–1584, 2006.">Prigent <em>et al.</em>, 2006</a>]</span>:
+As a first step, the L2PP brightness temperatures are converted from top-of-atmosphere (TOA) to bottom-of-atmosphere (BOA) values, using atmospheric parameters provided by the L1B/L2 Bridge. Neglecting sky contributions, the TOA brightness temperature can be expressed as <span id="id4">[<a class="reference internal" href="references.html#id6" title="Gabriëlle JM De Lannoy, Rolf H Reichle, Jinzheng Peng, Yann Kerr, Rita Castro, Edward J Kim, and Qing Liu. Converting between SMOS and SMAP level-1 brightness temperature observations over nonfrozen land. IEEE Geoscience and remote sensing letters, 12(9):1908–1912, 2015.">De Lannoy <em>et al.</em>, 2015</a>, <a class="reference internal" href="references.html#id16" title="Catherine Prigent, Filipe Aires, and William B Rossow. Land surface microwave emissivities over the globe for a decade. Bulletin of the American Meteorological Society, 87(11):1573–1584, 2006.">Prigent <em>et al.</em>, 2006</a>]</span>:</p>
+<div class="math notranslate nohighlight" id="equation-atm-1">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-atm-1" title="Link to this equation">#</a></span>\[TB^{TOA}_p = TB^{up}_{atm} + \Gamma \cdot TB^{BOA}_p + \Gamma (1-e_p^{surf}) TB^{dw}_{atm},\]</div>
+<p>where <span class="math notranslate nohighlight">\(p \in H, V\)</span> indicates polarization, <span class="math notranslate nohighlight">\(TB^{up}_{atm}\)</span> is the unpolarized upwelling brightness temperature, <span class="math notranslate nohighlight">\(TB^{dw}_{atm}\)</span> is the unpolarized downwelling brightness temperature, <span class="math notranslate nohighlight">\(\Gamma\)</span> is the one-way atmospheric transmittance, <span class="math notranslate nohighlight">\(e_p^{surf}\)</span> is the emissivity of the land surface (including contributions from the soil and vegetation). The BOA brightness temperature and surface emissivity are related as <span class="math notranslate nohighlight">\(TB^{BOA}_p = e_p^{surf} T_{eff}\)</span>, where <span class="math notranslate nohighlight">\(T_{eff}\)</span> is the effective temperature, assumed equal to <span class="math notranslate nohighlight">\(T_{skin}\)</span>. Assuming that the downwelling atmosphere brightness temperature is reflected in a purely specular manner, Equation <a class="reference internal" href="#equation-atm-1">(6.4)</a> can be rearranged to yield <span id="id5">[<a class="reference internal" href="references.html#id6" title="Gabriëlle JM De Lannoy, Rolf H Reichle, Jinzheng Peng, Yann Kerr, Rita Castro, Edward J Kim, and Qing Liu. Converting between SMOS and SMAP level-1 brightness temperature observations over nonfrozen land. IEEE Geoscience and remote sensing letters, 12(9):1908–1912, 2015.">De Lannoy <em>et al.</em>, 2015</a>]</span></p>
+<div class="math notranslate nohighlight" id="equation-atm-2">
+<span class="eqno">(6.5)<a class="headerlink" href="#equation-atm-2" title="Link to this equation">#</a></span>\[TB^{BOA}_p = T_{eff} \frac{TB^{TOA}_p \cdot \Gamma^{-1} - (1 + \Gamma^{-1})TB^{up}_{atm}}{T_{eff} - TB^{dw}_{atm}}.\]</div>
+<p>The uncertainty of the atmospheric terms shall be propagated into the <span class="math notranslate nohighlight">\(TB^{BOA}_p\)</span> uncertainty.</p>
+<section id="input-data">
+<h3><span class="section-number">6.5.1. </span>Input data<a class="headerlink" href="#input-data" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>L2PP Land TBs (TOA) at K-band (H polarization).</p></li>
+<li><p>L2PP Land TBs (TOA) at K-band (H polarization) uncertainty.</p></li>
+<li><p>L2PP Land atmospheric terms at K-band: <span class="math notranslate nohighlight">\(TB^{up}_{atm}\)</span>, <span class="math notranslate nohighlight">\(TB^{dw}_{atm}\)</span>, <span class="math notranslate nohighlight">\(\Gamma\)</span>.</p></li>
+</ul>
+</section>
+<section id="output-data">
+<h3><span class="section-number">6.5.2. </span>Output data<a class="headerlink" href="#output-data" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>L2PP Land TBs (BOA) at K-band (H apolarization).</p></li>
+<li><p>L2PP Land TBs (BOA) at K-band (H apolarization) uncertainty.</p></li>
+</ul>
+</section>
+</section>
+<section id="resampling">
+<h2><span class="section-number">6.6. </span>Resampling<a class="headerlink" href="#resampling" title="Link to this heading">#</a></h2>
+<p>After the atmospheric correction, the BOA L-band brightness temperature (TBs) is resampled to the 3 km EASE2 grid. The resampling process uses the <span class="xref std std-term">RGB toolbox</span>, as described in <a class="reference internal" href="01_applicable_ref_docs.html"><span class="doc">[RD-3]</span></a>. The toolbox is expected to propagate TB uncertainties.</p>
+<section id="id6">
+<h3><span class="section-number">6.6.1. </span>Input data<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>L2PP Land TBs (BOA) at K-band (H polarization).</p></li>
+<li><p>L2PP Land TBs (BOA) at K-band (H polarization) uncertainty.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3><span class="section-number">6.6.2. </span>Output data<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>L2PP Land TBs (BOA, gridded at 3 km) at K-band (H polarization).</p></li>
+<li><p>L2PP Land TBs (BOA, gridded at 3 km) at K-band (H polarization) uncertainty.</p></li>
+</ul>
+</section>
+</section>
+<section id="swf-retrieval-approach">
+<h2><span class="section-number">6.7. </span>SWF retrieval approach<a class="headerlink" href="#swf-retrieval-approach" title="Link to this heading">#</a></h2>
+<p>The SWF (Surface Water Fraction) retrieval approach follows the next steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Observed emissivity calculation</strong>: Emissivity is calculated as the K-band TB data from CIMR divided by <span class="math notranslate nohighlight">\(T_{skin}\)</span> temperature from ECMWF.</p></li>
+<li><p><strong>SWF Calculation through DR</strong>: The final SWF is derived using the DR method. This method compares the observed emissivity with the reference land emissivity, relative to the emissivity difference between pure water and land. The model is applied exclusively to non-frozen pixels (to be defined in future versions).</p></li>
+</ol>
+<section id="mathematical-description">
+<h3><span class="section-number">6.7.1. </span>Mathematical description<a class="headerlink" href="#mathematical-description" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight" id="equation-swf-eq">
+<span class="eqno">(6.6)<a class="headerlink" href="#equation-swf-eq" title="Link to this equation">#</a></span>\[f_w = \frac{\epsilon_H^{obs} - \epsilon_{Hl}^{ref}}{\epsilon_{Hw}^{ref} - \epsilon_{Hl}^{ref}}\]</div>
+<p>where <span class="math notranslate nohighlight">\( \epsilon_{H}^{obs}\)</span> represents the actual satellite emissivity observation for <span class="math notranslate nohighlight">\( H\)</span> polarization, <span class="math notranslate nohighlight">\( \epsilon_{Hw}^{ref}\)</span> denotes the emissivity from the reference water endmember pixel and <span class="math notranslate nohighlight">\( \epsilon_{Hl}^{ref}\)</span> is the emissivity from the reference land endmember pixel.</p>
+<p>A 16-bit status flag is provided alongside the retrieval. Bit-by-bit, the flag indicates:
+(0) Fraction of permanent waterbodies exceeding 50% (if the waterbody fraction is 100%, no retrieval is attempted),
+(1) Distance from the coastline lower than or equal to 6 km,
+(2) Fraction of urban areas exceeding 25%,
+(3) Fraction of permanently frozen areas exceeding 5%,
+(4) Precipitation rate exceeding 1 mm/hr,
+(5) Unphysical retrievals,
+(6) Presence of RFI.</p>
+<p>Additional flagging for snow cover and frozen conditions is conducted during the Extra Consistency Step <a class="reference internal" href="01_applicable_ref_docs.html"><span class="doc">[RD-4]</span></a>.</p>
+</section>
+<section id="id8">
+<h3><span class="section-number">6.7.2. </span>Input data<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Level-2 Pre-Processed TB (non water-corrected) at 18.7 GHz (H polarization).</p></li>
+<li><p>CIMR L2 Soil Moisture (L/C/X-band, gridded at 3 km).</p></li>
+<li><p>CIMR L2 Soil Moisture (L/C/X-band, gridded at 3 km) uncertainty.</p></li>
+<li><p>CIMR L2 X-band Vegetation Optical Depth (gridded at 3 km).</p></li>
+<li><p>CIMR L2 X-band Vegetation Optical Depth uncertainty (gridded at 3 km).</p></li>
+</ul>
+<p>Note that the CIMR L2 Soil Moisture and Vegetation Optical Depth variables at 3 km resolution are derived from the 9 km nested EASE2 grid used in the L2 SM and MMVI products.</p>
+</section>
+<section id="id9">
+<h3><span class="section-number">6.7.3. </span>Output data<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>CIMR L2 Surface Water Fraction.</p></li>
+<li><p>CIMR L2 Surface Water Fraction uncertainty.</p></li>
+<li><p>CIMR L2 Surface Water Fraction status flag.</p></li>
+<li><p>Latitude, longitude, EASE 2 grid row and column, UTC time.</p></li>
+</ul>
+</section>
+<section id="auxiliary-data">
+<h3><span class="section-number">6.7.4. </span>Auxiliary data<a class="headerlink" href="#auxiliary-data" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>LUT with land emissivities for different SM and VOD ranges of values.</p></li>
+<li><p>Water emissivity at K-band (H pol.).</p></li>
+<li><p>Skin temperature, total precipitation, permanent water areas, urban, permanent frozen and distance to coast.</p></li>
+</ul>
+<p>A full list of input, output, and auxiliary data is provided in the <a class="reference internal" href="06_input_output_data_definition.html"><span class="std std-doc">IODD</span></a>.</p>
+</section>
+<section id="uncertainty-quantification">
+<h3><span class="section-number">6.7.5. </span>Uncertainty quantification<a class="headerlink" href="#uncertainty-quantification" title="Link to this heading">#</a></h3>
+<p>The current approach presents an error propagation scheme, based on input uncertainties and partial derivatives.</p>
+<p>We assume the following sources of uncertainty:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(TB_{H}\)</span> (brightness temperature): <span class="math notranslate nohighlight">\(\sigma_{TB}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{skin}\)</span> (skin temperature from ECMWF): <span class="math notranslate nohighlight">\(\sigma_{T_{skin}}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon_{Hl}^{ref}\)</span> (reference land emissivity) from LUT standard deviations: <span class="math notranslate nohighlight">\(\sigma_{Hl}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon_{Hw}^{ref}\)</span> (reference freshwater emissivity): <span class="math notranslate nohighlight">\(\sigma_{Hw}\)</span></p></li>
+</ul>
+<p>The total uncertainty of the SWF is expressed by its variance:</p>
+<div class="math notranslate nohighlight" id="equation-sigma-swf">
+<span class="eqno">(6.7)<a class="headerlink" href="#equation-sigma-swf" title="Link to this equation">#</a></span>\[\sigma^2_{f_w} =
+\left( \frac{\partial f_w}{\partial \epsilon_H^{obs}} \right)^2 \sigma^2_{\epsilon} +
+\left( \frac{\partial f_w}{\partial \epsilon_{Hl}^{ref}} \right)^2 \sigma^2_{Hl} +
+\left( \frac{\partial f_w}{\partial \epsilon_{Hw}^{ref}} \right)^2 \sigma^2_{Hw}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_{\epsilon}\)</span> is the standard deviation of the observed emissivity, which depends on <span class="math notranslate nohighlight">\(\sigma_{TB}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{T_{skin}}\)</span>. The standard deviation <span class="math notranslate nohighlight">\(\sigma_{TB}\)</span> arises from the random noise and calibration uncertainty of the L1B TB. <span class="math notranslate nohighlight">\(\sigma_{Hw}\)</span> is static, and <span class="math notranslate nohighlight">\(\sigma_{Hl}\)</span> is obtained from a LUT that depends on SM and VOD. The calculation of <span class="math notranslate nohighlight">\(\sigma_{\epsilon}\)</span> is detailed below.</p>
+<section id="partial-derivatives-of-swf-step-by-step-derivation">
+<h4>Partial Derivatives of SWF: Step-by-Step Derivation<a class="headerlink" href="#partial-derivatives-of-swf-step-by-step-derivation" title="Link to this heading">#</a></h4>
+<p>We start from the expression:</p>
+<div class="math notranslate nohighlight" id="equation-swf-delta">
+<span class="eqno">(6.8)<a class="headerlink" href="#equation-swf-delta" title="Link to this equation">#</a></span>\[f_w = \frac{\epsilon_H^{obs} - \epsilon_{Hl}^{ref}}{\epsilon_{Hw}^{ref} - \epsilon_{Hl}^{ref}} = \frac{\epsilon_H^{obs} - \epsilon_{Hl}^{ref}}{\Delta}\]</div>
+<p>Derivative with respect to <span class="math notranslate nohighlight">\(\epsilon_H^{obs}\)</span> :</p>
+<p><span class="math notranslate nohighlight">\(\Delta\)</span> is constant with respect to <span class="math notranslate nohighlight">\(\epsilon_H^{obs}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-partial1">
+<span class="eqno">(6.9)<a class="headerlink" href="#equation-partial1" title="Link to this equation">#</a></span>\[\frac{\partial f_w}{\partial \epsilon_H^{obs}} = \frac{1}{\Delta}\]</div>
+<p>Derivative with respect to <span class="math notranslate nohighlight">\(\epsilon_{Hl}^{ref}\)</span> :</p>
+<div class="math notranslate nohighlight" id="equation-partial2">
+<span class="eqno">(6.10)<a class="headerlink" href="#equation-partial2" title="Link to this equation">#</a></span>\[\frac{\partial f_w}{\partial \epsilon_{Hl}^{ref}} =
+\frac{-\Delta + (\epsilon_H^{obs} - \epsilon_{Hl}^{ref})}{\Delta^2} =
+\frac{\epsilon_H^{obs} - \epsilon_{Hw}^{ref}}{\Delta^2}\]</div>
+<p>Derivative with respect to <span class="math notranslate nohighlight">\(\epsilon_{hw}^{ref}\)</span> :</p>
+<div class="math notranslate nohighlight" id="equation-partial3">
+<span class="eqno">(6.11)<a class="headerlink" href="#equation-partial3" title="Link to this equation">#</a></span>\[\frac{\partial f_w}{\partial \epsilon_{Hw}^{ref}} =
+\frac{-(\epsilon_H^{obs} - \epsilon_{Hl}^{ref})}{\Delta^2} =
+\frac{\epsilon_{Hl}^{ref} - \epsilon_{H}^{obs}}{\Delta^2}\]</div>
+<p>The total uncertainty of the SWF estimate is then calculated applying error propagation:</p>
+<div class="math notranslate nohighlight" id="equation-sigma-swf2">
+<span class="eqno">(6.12)<a class="headerlink" href="#equation-sigma-swf2" title="Link to this equation">#</a></span>\[\sigma_{f_w}^2 =
+\left( \frac{1}{\Delta} \right)^2 \sigma_{\epsilon}^2 +
+\left( \frac{\epsilon_{H}^{obs} - \epsilon_{Hw}^{ref}}{\Delta^2} \right)^2 \sigma_{Hl}^2 +
+\left( \frac{\epsilon_{Hl}^{ref} - \epsilon_{H}^{obs}}{\Delta^2} \right)^2 \sigma_{Hw}^2\]</div>
+<p>Note that the observed emissivity <span class="math notranslate nohighlight">\(\epsilon\)</span> is computed from the ratio:</p>
+<div class="math notranslate nohighlight" id="equation-emissivity-u">
+<span class="eqno">(6.13)<a class="headerlink" href="#equation-emissivity-u" title="Link to this equation">#</a></span>\[\epsilon = \frac{TB_{H}}{T_{skin}}\]</div>
+<p>To estimate its uncertainty, we apply error propagation:</p>
+<div class="math notranslate nohighlight" id="equation-emissivity-uncert-derivation">
+<span class="eqno">(6.14)<a class="headerlink" href="#equation-emissivity-uncert-derivation" title="Link to this equation">#</a></span>\[\sigma_{\epsilon}^2 =
+\left( \frac{\partial \epsilon}{\partial TB_{H}} \right)^2 \sigma_{TB}^2 +
+\left( \frac{\partial \epsilon}{\partial T_{skin}} \right)^2 \sigma_{T_{skin}}^2\]</div>
+<p>The computation of the partial derivatives is:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial \epsilon}{\partial TB_{H}} = \frac{1}{T_{skin}}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial \epsilon}{\partial T_{skin}} = -\frac{TB_{H}}{T_{skin}^2}\)</span></p></li>
+</ul>
+<p>Substituting into the formula:</p>
+<div class="math notranslate nohighlight" id="equation-emissivity-uncert">
+<span class="eqno">(6.15)<a class="headerlink" href="#equation-emissivity-uncert" title="Link to this equation">#</a></span>\[\sigma_{\epsilon}^2 =
+\left( \frac{1}{T_{skin}} \right)^2 \sigma_{TB}^2 +
+\left( \frac{TB_{H}}{T_{skin}^2} \right)^2 \sigma_{T_{skin}}^2\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Uncertainty values are computed per pixel and propagated into the final <code class="docutils literal notranslate"><span class="pre">SWF_uncertainty</span></code> output product, alongside a <code class="docutils literal notranslate"><span class="pre">status_flag</span></code> to indicate suspect input values (e.g. low confidence <span class="math notranslate nohighlight">\(T_{skin}\)</span>).</p>
+</div>
+</section>
+</section>
+<section id="output-variables">
+<h3><span class="section-number">6.7.6. </span>Output Variables<a class="headerlink" href="#output-variables" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">surface_water_fraction</span></code>: Main SWF retrieval value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">swf_uncertainty</span></code>: Estimated variance of SWF from analytical error propagation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">status_flag</span></code>: Coded flag for quality control and traceability of uncertainty contributions.</p></li>
+</ul>
+</section>
+<section id="prototype-implementation">
+<h3><span class="section-number">6.7.7. </span>Prototype implementation<a class="headerlink" href="#prototype-implementation" title="Link to this heading">#</a></h3>
+<p>The figures below show the surface water fraction retrieved over CONUS, along with the input data used (Windsat TB and LPDR SM and VOD) from July 15, 2017. As expected, SWF values predominantly range between approximately 0 and 0.3 <span id="id10">[<a class="reference internal" href="references.html#id8" title="J. Du, J.S. Kimball, L.A. Jones, Y. Kim, J. Glassy, and J.D. Watts. A global satellite environmental data record derived from amsr-e and amsr2 microwave earth observations. Earth System Science Data, 9(2):791, 2017. doi:10.5194/essd-9-791-2017.">Du <em>et al.</em>, 2017</a>]</span>.</p>
+<figure class="align-default" id="swf-retrieval">
+<img alt="_images/swf_retrieval.png" src="_images/swf_retrieval.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Illustration of the retrieval of SWF over partially inundated areas where SM and VOD data is available over CONUS on July 15, 2017.</span><a class="headerlink" href="#swf-retrieval" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="research-and-development">
+<h3><span class="section-number">6.7.8. </span>Research and development<a class="headerlink" href="#research-and-development" title="Link to this heading">#</a></h3>
+<p>Research and development efforts aim to enhance the SWF retrieval by integrating machine learning methods applied to K- and Ka-band data, complementing the existing Difference Ratio (DR) method. In parallel, ongoing work focuses on refining the uncertainty characterization.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_background_justification_algorithm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Background and justification of selected algorithm</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_static_offline_preparation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Static Offline Preparation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-method">6.1. Retrieval Method</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-emissivity-estimation-for-land-and-water-endmembers">6.1.1. Reference Emissivity Estimation for Land and Water Endmembers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cimr-level-1b-pre-processing-and-re-sampling-approach">6.2. CIMR Level-1b pre-processing and re-sampling approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-assumptions-and-simplifications">6.3. Algorithm Assumptions and Simplifications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#level-2-end-to-end-algorithm-functional-flow-diagram">6.4. Level-2 end to end algorithm functional flow diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atmospheric-correction">6.5. Atmospheric correction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data">6.5.1. Input data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-data">6.5.2. Output data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resampling">6.6. Resampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6.6.1. Input data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">6.6.2. Output data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#swf-retrieval-approach">6.7. SWF retrieval approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-description">6.7.1. Mathematical description</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">6.7.2. Input data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">6.7.3. Output data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auxiliary-data">6.7.4. Auxiliary data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-quantification">6.7.5. Uncertainty quantification</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivatives-of-swf-step-by-step-derivation">Partial Derivatives of SWF: Step-by-Step Derivation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-variables">6.7.6. Output Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype-implementation">6.7.7. Prototype implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#research-and-development">6.7.8. Research and development</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Roberto Fernandez-Moran, Andrés Terrer-Gómez, Moritz Link, María Piles.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+This ATBD was developed in the context of the ESA-funded CIMR L2PAD project (2023-2027) (ESA 4000143081/23/I-NS).
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
