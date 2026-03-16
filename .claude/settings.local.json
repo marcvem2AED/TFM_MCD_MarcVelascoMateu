@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(python -c \":*)",
+      "Bash(python _rebuild_notebook.py)",
+      "Bash(del \"c:\\\\Users\\\\marce\\\\Documents\\\\TFM_MCD_MarcVelascoMateu\\\\_rebuild_notebook.py\")"
+    ]
+  }
+}
