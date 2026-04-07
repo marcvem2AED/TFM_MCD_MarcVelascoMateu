@@ -1,9 +1,0 @@
-{
-    "model": "decision_tree",
-    "best_value_rmse": -0.005351739347718314,
-    "best_params": {
-        "max_depth": 33,
-        "min_samples_split": 4,
-        "min_samples_leaf": 1
-    }
-}
