@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3)",
+      "Bash(python3 -c ':*)",
+      "Bash(python _patch_notebook.py)",
+      "Bash(python _patch2.py)",
+      "Bash(rm _patch2.py)",
+      "Bash(python _patch3.py)",
+      "Bash(rm _patch3.py)",
+      "Bash(python -c ':*)",
+      "Bash(python _patch4.py)",
+      "Bash(rm _patch4.py)",
+      "Bash(python _patch5.py)",
+      "Bash(rm _patch5.py)",
+      "Bash(python _patch6.py)",
+      "Bash(rm _patch6.py)",
+      "Bash(python _patch7.py)",
+      "Bash(rm _patch7.py)"
+    ]
+  }
+}
