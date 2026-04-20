@@ -16,7 +16,13 @@
       "Bash(python _patch6.py)",
       "Bash(rm _patch6.py)",
       "Bash(python _patch7.py)",
-      "Bash(rm _patch7.py)"
+      "Bash(rm _patch7.py)",
+      "Bash(python -)",
+      "Bash(python -c ' *)",
+      "Bash(python -c \"import json; nb=json.load\\(open\\('c:/Users/marce/Documents/TFM_MCD_MarcVelascoMateu/3-Model_training.ipynb',encoding='utf-8'\\)\\); cells=nb['cells']; print\\(f'total: {len\\(cells\\)}'\\); [print\\(f'{i:3d} | id={c.get\\(\\\\\"id\\\\\",\\\\\"-\\\\\"\\)[:12]:12s} | {c[\\\\\"cell_type\\\\\"]:8s} | {\\\\\"\\\\\".join\\(c[\\\\\"source\\\\\"]\\)[:120].replace\\(chr\\(10\\),\\\\\" | \\\\\"\\)}'\\) for i,c in enumerate\\(cells\\)]\")",
+      "Bash(python _restructure_ch5.py)",
+      "Bash(python3 -c ' *)",
+      "Bash(python 'c:/Users/marce/Documents/TFM_MCD_MarcVelascoMateu/_nb_restructure.py')"
     ]
   }
 }
