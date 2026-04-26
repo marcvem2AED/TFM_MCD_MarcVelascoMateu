@@ -24,7 +24,13 @@
       "Bash(python3 -c ' *)",
       "Bash(python 'c:/Users/marce/Documents/TFM_MCD_MarcVelascoMateu/_nb_restructure.py')",
       "Bash(jupyter nbconvert *)",
-      "Bash(python3 create_notebook.py)"
+      "Bash(python3 create_notebook.py)",
+      "Bash(python3 rebuild_notebook.py)",
+      "Bash(rm rebuild_notebook.py)",
+      "Bash(python3 -c \"import xgboost; print\\(xgboost.__version__\\)\")",
+      "Bash(\"/c/Users/marce/miniconda3/envs/TFM_MCD/python.exe\" -c \"import xgboost; print\\(xgboost.__version__\\)\")",
+      "Bash(\"/c/Users/marce/miniconda3/envs/TFM_MCD/python.exe\" -c \"import inspect, xgboost; print\\(inspect.signature\\(xgboost.QuantileDMatrix.__init__\\)\\)\")",
+      "Bash(/c/Users/marce/miniconda3/envs/TFM_MCD/python.exe -c ' *)"
     ]
   }
 }
