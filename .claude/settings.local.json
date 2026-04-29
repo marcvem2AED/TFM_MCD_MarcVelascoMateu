@@ -30,7 +30,12 @@
       "Bash(python3 -c \"import xgboost; print\\(xgboost.__version__\\)\")",
       "Bash(\"/c/Users/marce/miniconda3/envs/TFM_MCD/python.exe\" -c \"import xgboost; print\\(xgboost.__version__\\)\")",
       "Bash(\"/c/Users/marce/miniconda3/envs/TFM_MCD/python.exe\" -c \"import inspect, xgboost; print\\(inspect.signature\\(xgboost.QuantileDMatrix.__init__\\)\\)\")",
-      "Bash(/c/Users/marce/miniconda3/envs/TFM_MCD/python.exe -c ' *)"
+      "Bash(/c/Users/marce/miniconda3/envs/TFM_MCD/python.exe -c ' *)",
+      "Bash(python3 -c \"import json; nb=json.load\\(open\\('/c/Users/marce/Documents/TFM_MCD_MarcVelascoMateu/1-Data_preprocessing.ipynb'\\)\\); [print\\(c['source']\\) for c in nb['cells'] if 'latitude_grid' in str\\(c.get\\('source',''\\)\\)][:3]\")",
+      "Bash(python -c \"import json; nb=json.load\\(open\\('4-Temporal_and_spatial_context.ipynb', encoding='utf-8'\\)\\); [print\\(i, c['cell_type'], c.get\\('id',''\\)\\) for i,c in enumerate\\(nb['cells']\\)]\")",
+      "Bash(python -c \"import json; nb=json.load\\(open\\('4-Temporal_and_spatial_context.ipynb', encoding='utf-8'\\)\\); [print\\(i, c['cell_type'], c.get\\('id',''\\), repr\\(''.join\\(c['source']\\)[:80]\\)\\) for i,c in enumerate\\(nb['cells']\\)]\")",
+      "Bash(python -c \"import json; nb=json.load\\(open\\('4-Temporal_and_spatial_context.ipynb', encoding='utf-8'\\)\\); print\\(len\\(nb['cells']\\)\\); [print\\(i, c['cell_type'], c.get\\('id',''\\)\\) for i,c in enumerate\\(nb['cells']\\)]\")",
+      "Bash(python -c \"import json; nb=json.load\\(open\\(r'c:/Users/marce/Documents/TFM_MCD_MarcVelascoMateu/B-DR_testing.ipynb',encoding='utf-8'\\)\\); print\\('cells:',len\\(nb['cells']\\)\\); print\\('OK'\\)\")"
     ]
   }
 }
