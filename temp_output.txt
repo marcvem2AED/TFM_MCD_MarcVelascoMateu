@@ -1,0 +1,51 @@
+
+================================================================================
+CELL 70 (markdown, id: s9-header-renumbered)
+================================================================================
+## 9. Final Model Summary
+
+
+================================================================================
+CELL 71 (code, id: s11-retrain)
+================================================================================
+# Retrain on the full dataset (train + test combined) using exhaustive HPO params
+X_full = df_model[FINAL_FEATURE_SET]
+y_full = y
+
+final_model_fulldata = XGBRegressor(**{k: v for k, v in FINAL_HPO_PARAMS.items()
+                                       if k not in ('objective', 'eval_metric', 'tree_method')})
+final_model_fulldata.fit(X_full, y_full)
+print('Retrained final model on full dataset.')
+print(f'Full dataset size: {len(X_full):,} rows, {len(FINAL_FEATURE_SET)} features')
+
+================================================================================
+CELL 72 (code, id: bfe4ac5f)
+================================================================================
+# Final generalisation check on structured splits using full-data model
+gen_rows = []
+for split_name, tr_idx_s, te_idx_s in [
+    ('temporal', train_idx_time, test_idx_time),
+    ('geographic_corner', train_idx_corner, test_idx_corner),
+    ('geographic_block', train_idx_block, test_idx_block),
+]:
+    X_te_s = df_model.loc[te_idx_s, FINAL_FEATURE_SET]
+    y_te_s = y.loc[te_idx_s]
+    y_pred_s = final_model_fulldata.predict(X_te_s)
+    gen_rows.append({
+        'split': split_name,
+        'MAE':  mean_absolute_error(y_te_s, y_pred_s),
+        'RMSE': root_mean_squared_error(y_te_s, y_pred_s),
+        'R2':   r2_score(y_te_s, y_pred_s),
+    })
+
+display(pd.DataFrame(gen_rows).round(6))
+
+================================================================================
+CELL 73 (code, id: s11-table)
+================================================================================
+Traceback (most recent call last):
+  File "<stdin>", line 24, in <module>
+  File "C:\Users\marce\AppData\Local\Programs\Python\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 117: character maps to <undefined>
