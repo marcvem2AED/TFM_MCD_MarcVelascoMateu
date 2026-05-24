@@ -1,0 +1,17 @@
+{
+    "n_estimators": 2854,
+    "max_depth": 16,
+    "learning_rate": 0.0510113942385915,
+    "min_child_weight": 4.386272589127554,
+    "subsample": 0.9459868514622821,
+    "colsample_bytree": 0.8218050560149568,
+    "colsample_bylevel": 0.8675196471375777,
+    "gamma": 9.134384040194477e-08,
+    "reg_alpha": 0.25685193798166406,
+    "reg_lambda": 0.004260426016094105,
+    "objective": "reg:squarederror",
+    "eval_metric": "rmse",
+    "tree_method": "hist",
+    "device": "cuda",
+    "random_state": 42
+}
