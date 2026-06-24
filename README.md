@@ -1,4 +1,4 @@
-# Machine Learning Framework for Surface Water Fraction Retrieval
+# A Machine Learning Framework for Surface Water Fraction Retrieval in Support of the Copernicus Imaging Microwave Radiometer
 
 > Machine learning framework for global Surface Water Fraction (SWF) estimation from passive microwave brightness temperatures, developed as part of a Master's thesis in Data Science in the context of the [CIMR L2PAD](https://github.com/CIMR-L2PAD) project.
 
